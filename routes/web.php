@@ -21,12 +21,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/mahasiswa',[MahasiswaController::class,'index']);
-Route::get('/mahasiswa/create',[MahasiswaController::class,'create']);
-Route::post('/mahasiswa/store',[MahasiswaController::class,'store']);
-Route::get('/mahasiswa/{id}/edit',[MahasiswaController::class,'edit']);
-Route::put('/mahasiswa/{id}',[MahasiswaController::class,'update']);
-Route::delete('/mahasiswa/{id}',[MahasiswaController::class,'distroy']);
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/register', [AuthController::class, 'register'])->name('register');
@@ -38,4 +32,11 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [HomeController::class, 'index']);
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
+    
+Route::get('/mahasiswa',[MahasiswaController::class,'index']);
+Route::get('/mahasiswa/create',[MahasiswaController::class,'create']);
+Route::post('/mahasiswa/store',[MahasiswaController::class,'store']);
+Route::get('/mahasiswa/{id}/edit',[MahasiswaController::class,'edit']);
+Route::put('/mahasiswa/{id}',[MahasiswaController::class,'update']);
+Route::delete('/mahasiswa/{id}',[MahasiswaController::class,'distroy']);
 });
